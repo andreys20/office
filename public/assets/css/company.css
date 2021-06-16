@@ -1,0 +1,171 @@
+input , button , label{
+    font-family: DINPro;
+}
+
+label {
+    color: #000000;
+    font-size: 15px;
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+
+.content{
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+
+.block-company {
+    width: 100%;
+    min-height: 650px;
+    font-family: DINPro;
+}
+
+.bg-image {
+    max-width: none;
+    height: 100%;
+    position: absolute;
+    right: -145px;
+    top: 0;
+    z-index: -1;
+}
+
+.bg-image img{
+    opacity: 0.2;
+}
+
+/*.bg-image::after {*/
+/*    bottom: 0;*/
+/*    right: 0;*/
+/*    top: 174px;*/
+/*    content: '';*/
+/*    width: 100%;*/
+/*    background: #000000;*/
+/*    height: 100%;*/
+/*}*/
+
+.company-form{
+    text-align: center;
+    display: block;
+    padding: 20px 20px;
+    width: 50%;
+    /*z-index: 10;*/
+}
+
+.title{
+    color: #000000;
+    text-align: left;
+    font-size: 30px;
+    text-transform: uppercase;
+    font-family: DINPro-Bold;
+}
+.field_wrap{
+    position: relative;
+    padding: 10px 0;
+    text-align: left;
+    max-width: 330px;
+}
+
+.field_wrap input{
+    box-sizing: border-box;
+    outline:none;
+}
+.field_type {
+    text-transform: uppercase;
+    width: 100%;
+    padding: 0 25px;
+    height: 28px;
+    background-color: #fff;
+    color: #000;
+    font-weight: 700;
+    line-height: 28px;
+    text-transform: none;
+    margin: 5px 0;
+    border: 2px solid #000;
+    -webkit-border-radius:  6px 6px 6px 5px;
+    -moz-border-radius:  6px 6px 6px 5px;
+    border-radius:  6px 6px 6px 5px;
+    -webkit-transition: border-color .3s ease-in;
+    -o-transition: border-color .3s ease-in;
+    -moz-transition: border-color .3s ease-in;
+    transition: border-color .3s ease-in
+}
+
+.field_type:focus {
+    border-color: #e5e3de;
+}
+
+.field_type.error {
+    border-color: #e92430
+}
+.field_type:hover {
+    border-color: #e5e3de;
+}
+
+.field_type[readonly=readonly] {
+    background-color: transparent;
+    border: none;
+    padding-left: 0;
+    height: 40px
+}
+
+.btn-form {
+    font-size: 17px;
+    color: #fff;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius:  6px 6px 6px 5px;
+    background: #000000;
+    min-width: 250px;
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+    text-align: center;
+    font-weight: 600;
+    padding: 0 20px;
+    letter-spacing: .14px;
+}
+
+.btn-form:hover {
+    background: #fff;
+    color: #000000;
+    opacity: 1;
+}
+
+.disabled {
+    border-color: #999999;
+    cursor: not-allowed;
+    background-color: #999999;
+    color: #FFF;
+    opacity: 0.4;
+}
+
+.disabled:hover {
+    border-color: #999999;
+    cursor: not-allowed;
+    background-color: #999999;
+    color: #FFF;
+    opacity: 0.4;
+}
+
+.company-list {
+    padding: 35px 20px;
+    width: 50%;
+    /*min-height: 400px;*/
+}
+
+.select-company {
+    width: 100% !important;
+}
+
+.btn-small{
+    font-size: 15px;
+    height: 34px;
+    line-height: 34px;
+    margin: 15px 10px 0 0;
+}
+
+
+

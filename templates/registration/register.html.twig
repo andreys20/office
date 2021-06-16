@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/assets/css/style-auth.css') }}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="{{ asset('/assets/js/auth.js') }}"></script>
+        <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.png') }}">
+    {% endblock %}
+    <meta charset="UTF-8">
+</head>
+{% block body %}
+    <div class="container-auth">
+        <div class="bg-image">
+        </div>
+        <div class="background_page">
+            <div class="content">
+                <div class="block-auth">
+                    <div class="g-wrapper">
+                        {{ form_start(form,{'attr': {'class': 'auth'}}) }}
+                        <h1 class="title">Регистрация</h1>
+                        <div class="field_wrap">
+                        {{ form_row(form.email ,{'attr': {'class': 'form-control field_type' , 'placholder': 'Email', 'autocomplete': 'on'}}) }}
+                        </div>
+                        <div class="field_wrap">
+                        {{ form_row(form.password ,{'attr': {'class': 'form-control field_type', 'placholder': 'Пароль', 'autocomplete': 'on'}}) }}
+                        </div>
+                        <div class="button-block_auth">
+                            <button class="btn-form" type="submit">Зарегистрироваться</button>
+                            <a class="btn-form" href="{{ path('app_login') }}">Есть аккаунт</a>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

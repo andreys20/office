@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}" />
+        <link rel="stylesheet" href="{{ asset('/assets/css/style-auth.css') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.png') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="{{ asset('/assets/js/auth.js') }}"></script>
+    {% endblock %}
+    <meta charset="UTF-8">
+</head>
+{% block body %}
+    <div class="container-auth">
+        <div class="bg-image">
+        </div>
+        <div class="background_page">
+            <div class="content">
+                <div class="block-auth">
+                    <div class="g-wrapper">
+                        <form action="{{ path('login_check') }}" method="post" class="auth">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+
+                            {% if app.user %}
+                                <div class="mb-3">
+                                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                </div>
+                            {% endif %}
+
+                            <h1 class="title">Авторизация</h1>
+                            <div class="field_wrap">
+                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="Email" autocomplete="on" class="form-control field_type" required autofocus>
+                            </div>
+                            <div class="field_wrap">
+                                <input type="password" name="password" id="inputPassword" placeholder="Пароль" autocomplete="on" class="form-control field_type" required>
+                            </div>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                            <div class="button-block_auth">
+                                <button class="btn-form" type="submit">Войти</button>
+                                <a class="btn-form" href="{{ path('app_register') }}">Регистрация</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+

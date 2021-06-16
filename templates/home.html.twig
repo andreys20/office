@@ -1,0 +1,35 @@
+{% include 'header.html.twig' %}
+   <div class="container_page">
+       <div class="background_page">
+           <div class="g-wrapper">
+               <div class="menu_block">
+                   {% for item in menu %}
+                       <div class="link_item" style="background-image: url({{ item.documents.img }})">
+                           <div class="item_overlay" style="background-color: #FFFFFF">
+                               <div class="overlay_textBlock">
+                                   <div class="item_text">{{ item.documents.title }}</div>
+                                   <div class="overlay_discription">
+                                       {{ item.documents.description|raw }}
+                                   </div>
+                               </div>
+                               <div class="overlay_link">
+                                   {% for items in item.documents.data %}
+                                   <a href="{{ path( items.link ) }}" class="item_overlay_link">
+                                       <div class="link_text">{{ items.text }}</div>
+                                       <div class="link_icon"><img src="/img/icon_link.svg"  alt=""></div>
+                                   </a>
+                                   {% endfor %}
+                               </div>
+                           </div>
+                       </div>
+                   {% endfor %}
+               </div>
+           </div>
+       </div>
+   </div>
+{% include 'footer.html.twig' %}
+
+
+
+
+

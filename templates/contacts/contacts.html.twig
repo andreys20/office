@@ -1,0 +1,87 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/contacts.css') }}" />
+    {#    <script src="{{ asset('/assets/js/auth.js') }}"></script>#}
+{% endblock %}
+{% include 'header.html.twig' %}
+<div class="container_page">
+    <div class="background_page">
+        <div class="g-wrapper">
+            <section class="contacts-block">
+                <div class="block-contacts-title">Контакты</div>
+                <div class="contacts__wrapper-container">
+                    <div class="contacts__wrapper-container-aside">
+                        <div class="contacts__wrapper-container-aside-block reveal">
+                            <div class="contacts__wrapper-container-aside-block-title">
+                                <span>Контактные данные</span>
+                            </div>
+                            <div class="contacts__wrapper-container-aside-block-container">
+                                <div class="contacts__wrapper-container-aside-block-item">
+                                    <div class="contacts__wrapper-container-aside-block-item-subtitle">Телефон</div>
+                                    <div class="contacts__wrapper-container-aside-block-item-link"><a id="fax" href="tel:+7 (902) 092-79-72">+7 (902) 092-79-72</a></div>
+                                </div>
+                                <div class="contacts__wrapper-container-aside-block-item">
+                                    <div class="contacts__wrapper-container-aside-block-item-subtitle">Отдел кадров</div>
+                                    <div class="contacts__wrapper-container-aside-block-item-link"><a id="hiring" href="tel:+7 (902) 092-79-72">+7 (902) 092-79-72</a></div>
+                                </div>
+                                <div class="contacts__wrapper-container-aside-block-item">
+                                    <div class="contacts__wrapper-container-aside-block-item-subtitle">Отдел лицензирования</div>
+                                    <div class="contacts__wrapper-container-aside-block-item-link"><a id="licence" href="tel:+7 (902) 092-79-72">+7 (902) 092-79-72</a></div>
+                                </div>
+                                <div class="contacts__wrapper-container-aside-block-item">
+                                    <div class="contacts__wrapper-container-aside-block-item-subtitle">Бухгалтерия</div>
+                                    <div class="contacts__wrapper-container-aside-block-item-link"><a id="tfax1" href="tel:+7 (902) 092-79-71">+7 (902) 092-79-71</a></div>
+                                    <div class="contacts__wrapper-container-aside-block-item-link"><a id="tfax2" href="tel:+7 (902) 092-79-71">+7 (902) 092-79-71</a></div>
+                                </div>
+                                <div class="contacts__wrapper-container-aside-block-item">
+                                    <div class="contacts__wrapper-container-aside-block-item-subtitle">E-mail</div>
+                                    <div class="contacts__wrapper-container-aside-block-item-link"><a id="email" href="mailto:{{ data.email }}">{{ data.email }}</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contacts__wrapper-container-aside-block reveal">
+                            <div class="contacts__wrapper-container-aside-block-title">
+                                <span>Соц. сети и мессенджеры</span>
+                            </div>
+                            <div class="contacts__wrapper-container-aside-block-container">
+                                {% for items in data.social %}
+                                <div class="contacts__wrapper-container-aside-block-social">
+                                    <div class="icon_social"><img src="{{ items.img }}" alt=""></div>
+                                    <div class="contacts__wrapper-container-aside-block-social-content">
+                                        <div class="contacts__wrapper-container-aside-block-social-content-title">
+                                            {{ items.name }}</div>
+                                        <a href="{{ items.link }}" target="_blank">{{ items.text }}</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="contacts__wrapper-container-contents">
+                        <div class="contacts__wrapper-container-content-block-title">
+                            Волгоград
+                        </div>
+                        <div class="contacts__wrapper-container-content-block-address">
+                            400005, Волгоград, Коммунистическая 19Д
+                        </div>
+                        <div class="contacts__wrapper-container-content-block-map">
+                            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Af379ee4a076e288f252de3e2d68d11116406bc825add4226f74b9317354585dd&amp;source=constructor" width="100%" height="400" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+{% include 'footer.html.twig' %}
+<script>
+    $(document).ready(function() {
+
+    });
+</script>
+
+
+
+
+

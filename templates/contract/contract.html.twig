@@ -1,0 +1,155 @@
+{% include 'header.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/contract.css') }}" />
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" />
+    {#    <script src="{{ asset('/assets/js/auth.js') }}"></script>#}
+{% endblock %}
+<div class="container_page">
+    <div class="background_page">
+        <div class="g-wrapper">
+            <section class="block-contract">
+                  <div class="block-contract-title">Таблица контрактов</div>
+                  <div class="block-contract-description-info"></div>
+                  <div class="block-contract-table">
+                      <table id="pages-table" class="table table-hover">
+                      </table>
+                  </div>
+            </section>
+        </div>
+    </div>
+</div>
+<script>
+
+        $(function() {
+        var $table = $("#pages-table");
+            function editContract(){
+                $('#edit-company').on( 'submit', function (e) {
+                    e.preventDefault();
+                    var data = {};
+                    $(this).serializeArray().forEach((object)=>{
+                        data[object.name] = object.value;
+                    });
+
+                    $.ajax({
+                        method: 'POST',
+                        url: '/contract/edit/save',
+                        data: data,
+                        dataType: 'json',
+
+                        success: function (data){
+                            if (data.result === true){
+                                dTable.ajax.reload();
+                                $.fancybox.open('<div class="popup-message"> ' +
+                                    '<div class="popup_icon"><img src="/img/success.svg"  alt=""></div>' +
+                                    '<p>'+data.message+'</p></div>');
+                            }
+                            else if (data.result === false){
+                                dTable.ajax.reload();
+                                $.fancybox.open('<div class="popup-message"> ' +
+                                    '<div class="popup_icon"><img src="/img/error.svg"  alt=""></div>' +
+                                    '<p>'+data.message+'</p></div>');
+                            }
+                        },
+                        error: function (xhr){
+                            console.log(xhr.responseText);
+                        }
+                    });
+                })
+            }
+
+            function EventsClick (){
+                $( ".icon_table").unbind( "click" );
+                $('.icon_table').on( 'click', function ( e, settings ) {
+                    var tr = e.target.closest('tr');
+                    var id = $(tr).find(".id-th").html();
+                    var data = {};
+                    data['id'] = id;
+
+                    $.ajax({
+                        method: 'POST',
+                        url: '/contract/edit',
+                        data: data,
+                        success: function (data){
+                            $.fancybox.open(data);
+                            editContract();
+                        },
+                        error: function (xhr){
+                            console.log(xhr.responseText);
+                        }
+                    })
+                })
+            }
+            var dTable = $table.DataTable({
+                pageLength: 10,
+                searching: true,
+                lengthMenu: [10, 25, 50, 100],
+                order: [[ 1, "asc" ]],
+                autoWidth:true,
+                language: {
+                    "sProcessing": "Подождите...",
+                    "sLengthMenu": "Показать _MENU_ записей",
+                    "sZeroRecords": "Записи отсутствуют.",
+                    "sInfo": "Записи с _START_ до _END_ из _TOTAL_ записей",
+                    "sInfoEmpty": "Записи с 0 до 0 из 0 записей",
+                    "sInfoFiltered": "(отфильтровано из _MAX_ записей)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Поиск:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "Первая",
+                        "sPrevious": "Предыдущая",
+                        "sNext": "Следующая",
+                        "sLast": "Последняя"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": активировать для сортировки столбца по возрастанию",
+                        "sSortDescending": ": активировать для сортировки столбцов по убыванию"
+                    },
+                },
+                ajax: {
+                    url: "{{ path('app_get_list_contract') }}",
+                    type: "POST",
+                    data: function (data) {
+                        console.log(data);
+                    }
+                },
+                bFilter: false,
+                columns: [
+                    {% for key,column in tableColumns %}
+
+                    {
+                        data: "{{ key }}",
+                        sClass: "{{ key }}-th",
+                        {{ column.label|default('') ? (' title: "'~column.label|trans~'",')|raw : '' }}
+                        {{ column.type|default('') ? (' type: "'~column.type~'",')|raw : '' }}
+                        sortable: true,
+                        {{ key == 'id' ? ('visible: "true",') : '' }}
+
+                    },
+                    {% endfor %}
+                ],
+                columnDefs: [
+                    {
+                        "targets": 12,
+                        "data" : null,
+                        "sortable" : false,
+                        "defaultContent": "<a class='icon_table'><img src='/img/edit.svg' alt=''></a>"
+                    }
+                ],
+                initComplete: function () {
+                    EventsClick();
+                    dTable.on( 'draw', function () {
+                        EventsClick();
+                    } );
+
+                }
+            });
+        });
+</script>
+{% include 'footer.html.twig' %}
+
+
+
+
+

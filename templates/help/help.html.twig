@@ -1,0 +1,221 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/help.css') }}" />
+    {#    <script src="{{ asset('/assets/js/auth.js') }}"></script>#}
+{% endblock %}
+{% include 'header.html.twig' %}
+<div class="container_page">
+    <div class="background_page">
+        <div class="g-wrapper">
+            <section class="help-block">
+                <div class="block-help-title">Помощь</div>
+                <div class="help__wrapper-container">
+                    <aside class="sidebar" id="sticky-sidebar">
+                        <ul class="help__wrapper-container-aside_content" id="scroll_block">
+                            <li><a href="#createCompany">Как создать компанию</a></li>
+                            <li><a href="#createContract">Как создать договор</a></li>
+                            <li><a href="#listContract">Посмотреть созданные договора</a></li>
+                            <li><a href="#statistic">Как посмотреть статистику</a></li>
+                        </ul>
+                    </aside>
+
+                    <div class="help__wrapper-container-contents">
+                        <div id="createCompany" class="help__wrapper-container-contents-text">
+                             <div class="contents-text-title">Как создать компанию</div>
+                             <div class="contents-text">
+                                 <p>
+                                     Для создания компании перейдите в вкладку <b>"Создание договоров"</b> на главной.
+                                 </p>
+                                 <p>
+                                     Если вашей компании не в списке, нажмите на кнопку <b>"Создайте новую"</b>.
+                                 </p>
+                                 <div class="text_img">
+                                     <img src="/img/help/help_1.png" alt="Создание компании">
+                                 </div>
+                                 <p>
+                                     Заполните форму и нажмите на кнопку <b>"Создать и продолжить"</b>.
+                                 </p>
+                                 <p>
+                                     После создания контракта вам придет уведомление об успешной операции,<br>
+                                     и вы будете перенаправленны на таблицу с контрактами
+                                 </p>
+                             </div>
+                        </div>
+                        <div id="createContract" class="help__wrapper-container-contents-text">
+                            <div class="contents-text-title">Как создать договор</div>
+                            <div class="contents-text">
+                                <p>
+                                    Для создания договора перейдите в вкладку <b>"Создание договоров"</b> на главной.
+                                </p>
+                                <p>
+                                    Выберите контрагента с которым хотите заключить договор, или создайте нового.
+                                </p>
+                                <p>
+                                    В случае успеха, вы будете перенаправленны на страницу договор, где сможете вносить
+                                    изменнения в таблице при нажатии на кнопку редактирования.
+                                </p>
+                                <div class="text_img">
+                                    <img src="/img/help/help_2.png" alt="Редактирование договора">
+                                </div>
+                                <p>
+                                    После внесенных изменений нажмите на кнопку <b>"Сохранить"</b>. В случае успеха получите уведомление.
+                                </p>
+                            </div>
+                        </div>
+                        <div id="listContract" class="help__wrapper-container-contents-text">
+                            <div class="contents-text-title">Посмотреть созданные договора</div>
+                            <div class="contents-text">
+                                <p>
+                                    Перейдите на главной странице в раздел <b>"Работа с договорами"</b> и нажать на кнопку <b>"Список"</b>.
+                                </p>
+                                <p>
+                                    В открытой странице вы можете, производить поиск по всем полям, а так же сортировать по данным.
+                                </p>
+                                <div class="text_img">
+                                    <img src="/img/help/help_3.png" alt="Таблица договоров">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="statistic" class="help__wrapper-container-contents-text">
+                            <div class="contents-text-title">Как посмотреть статистику</div>
+                            <div class="contents-text">
+                                <p>Перейдите на главной странице в раздел <b>"Отчеты"</b></p>
+                                <p>На странице статистики можно посмотреть кол-во договоров оформленные вами.</p>
+                                <p>За актуальный месяц:</p>
+                                <div class="text_img">
+                                    <img src="/img/help/help_4.png" alt="Статистика месяц">
+                                </div>
+                                <p>За актуальный год</p>
+                                <div class="text_img">
+                                    <img src="/img/help/help_5.png" alt="Статистика год">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+{% include 'footer.html.twig' %}
+<script>
+    $(document).ready(function() {
+        scrollBlockHelp();
+        $('#myChart').zingchart({
+            data: {
+                type: 'line',
+                series: [{ values: [1,2,5,3,9,4] }]
+            }
+        });
+    });
+    function scrollBlockHelp() {
+        $('#scroll_block').scrollBlock({
+            'wrapElem' : '.help__wrapper-container', // class или id внешнего элемента например '.class' или '#id'
+            'headerElem' : 'header', // class или id если шапка тоже скролится '.class' или '#id'
+            'topElem' : '', // class или id верхнего дополнительного элемента например '.class' или '#id'
+            'bottomElem' : '', // class или id эелемента нижнего дополнительного элемента например '.class' или '#id'
+            'minWidthWindows' : 1023, // мимимальная ширина при которой нужно отключать подвижность блока
+            'paddingBefore' : 60, // дополнительное расстояние отступ от верха страницы при движении
+            'paddingAfter' : 60, // дополнительное расстояние отступ от футера когда элемент дойдет до него
+            'pageUrl' : [] // можно указать конкретные страницы где подвижный блок не нужен ['/', '/index.php', /office/]
+        });
+    }
+    (function( $ ) {
+        $.fn.scrollBlock = function( options ) {
+
+            var settings = $.extend( {
+                'wrapElem' : '.content', // class или id внешнего элемента например '.class' или '#id'
+                'headerElem' : '', // class или id если шапка тоже скролится '.class' или '#id'
+                'topElem' : '', // class или id верхнего дополнительного элемента например '.class' или '#id'
+                'bottomElem' : '', // class или id эелемента нижнего дополнительного элемента например '.class' или '#id'
+                'minWidthWindows' : 0, // мимимальная ширина при которой нужно отключать подвижность блока
+                'paddingBefore' : 0, // дополнительное расстояние отступ от верха страницы при движении
+                'paddingAfter' : 0, // дополнительное расстояние отступ от футера когда элемент дойдет до него
+                'pageUrl' : [] // можно указать конкретные страницы где подвижный блок не нужен ['/', '/index.php', /office/]
+            }, options);
+            function innerScrollBlock(navbar) {
+                var wrapper = $(settings.wrapElem); // блок в котором двигается наш элемент
+                var header = $(settings.headerElem); // если внутри wrapper внизу есть элемент на который нельзя наезжать
+                var footer = $(settings.bottomElem); // если внутри wrapper внизу есть элемент на который нельзя наезжать
+                var navbar2 = $(settings.topElem); // верхний элемент во враппере на который залазить нельзя
+                var heightScrollElement = navbar.height(); // Высота подвижного блока
+                var navbarHeight; // высота подвижного блока + его отступы
+                var topDopPole = 0;
+                var heightDopPole = 0;
+                var heightFooter = 0;
+                var heightHeader = 0;
+                var heightOuterWrapper; // высота внешнего блока
+                var heightWrapper; // высота внешнего блока
+                var topWrapper = 0;
+                if ($(window).outerWidth() > settings.minWidthWindows) {
+                    heightScrollElement = navbar.height(); // Высота подвижного блока
+                    navbarHeight = heightScrollElement + settings.paddingBefore; // высота подвижного блока + его отступы
+                    heightOuterWrapper = wrapper.outerHeight(); // высота внешнего блока
+                    heightWrapper = wrapper.height(); // высота внешнего блока
+
+                    if (wrapper.length > 0) {
+                        topWrapper = wrapper.offset().top; // начало внешнего блока
+                    }
+                    if (footer.length > 0) {
+                        heightFooter = footer.height(); // высота нижнего элемента
+                    }
+                    if (header.length > 0) {
+                        heightHeader = header.height(); // высота верхнего элемента
+                    }
+                    var topPoint = topWrapper;
+                    if (navbar2.length > 0) {
+                        topDopPole = navbar2.offset().top; // начало дополнительного поля
+                        heightDopPole = navbar2.height(); // высота дополнительного поля внутри врапера
+                        topPoint = topDopPole + heightDopPole - settings.paddingBefore;
+                    }
+
+                    var heightFooterPadding = heightFooter + settings.paddingAfter; // высота нижнего элемента с отступом
+
+                    var startScroll = topPoint - heightHeader - settings.paddingBefore; // начальная высота от который начинает двигаться наш элемент
+                    var endScroll = topWrapper + heightWrapper - navbarHeight - heightFooterPadding; // конечное расстояние до которого можно двигать наш элемент
+                    var areaScroll = heightDopPole + navbarHeight + heightFooterPadding; // высота подвижной области
+                    var scroll = $(document).scrollTop(); // значение высоты скролла
+
+                    if (heightOuterWrapper > areaScroll) { // если высота враппера меньше подвижного блока, то отключаем подвижность
+                        if (scroll > startScroll) { // если текущее положение скрола больше начальной высоты, начинаем двигаться
+                            navbar.css('position', 'fixed');
+                        } else { // иначе стоим на месте
+                            navbar.css('position', 'relative');
+                        }
+                        if (scroll > (endScroll - heightHeader)) { // если блок дошел до конечной высоты то поднимаем его, что бы не залазил на футер
+                            navbar.css('top', endScroll - scroll + settings.paddingBefore);
+                        } else if (scroll <= startScroll) { // если блок ещё не двигается определяем ему начальное положение
+                            navbar.css('top', 0);
+                        } else { // во всех остальных случаях двигаем
+                            navbar.css('top', settings.paddingBefore + heightHeader);
+                        }
+                    } else {
+                        navbar.css('position', 'relative');
+                        navbar.css('top', 0);
+                    }
+                } else {
+                    navbar.css('position', 'relative');
+                    navbar.css('top', 0);
+                }
+            }
+
+            return this.each(function() {
+                var navbar = $(this); // элемент который мы двигаем
+                var pathName = window.location.pathname;
+                if (!(Number($.inArray(pathName, settings.pageUrl)) + 1)) { // если главная страница, отключаем наш подвижный блок
+                    innerScrollBlock(navbar);
+                    $(window).on('scroll resize', function () {
+                        innerScrollBlock(navbar);
+                    });
+                }
+            });
+        };
+    })(jQuery);
+
+</script>
+
+
+
+
+

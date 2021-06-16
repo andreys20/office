@@ -1,0 +1,106 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/company.css') }}" />
+    {#    <script src="{{ asset('/assets/js/auth.js') }}"></script>#}
+{% endblock %}
+{% include 'header.html.twig' %}
+<div class="container_page">
+    <div class="background_page">
+        <div class="g-wrapper">
+            <div class="block-company">
+                <div class="block-company-content">
+                    <div class="company-list">
+                        <h1 class="title">Выберите компанию</h1>
+                        <label>
+                            <select class="select-company">
+                                {% for value in items %}
+                                    <option value="{{ value.id }}">{{ value.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                        <div class="button-block">
+                            <a class="btn btn-form btn-small" id="create">Создайте новую</a>
+                            <a class="btn btn-form btn-small" id="continue">Продолжить</a>
+                        </div>
+                    </div>
+                    {% include ('/form/company-create.html.twig') %}
+                </div>
+                <div class="bg-image">
+                    <img src="/img/notebook.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'footer.html.twig' %}
+<script>
+    $(document).ready(function() {
+        $('.select-company').select2();
+
+        $('#create').click( function (e){
+            $('.company-list').hide();
+            $('#create-company-form').show();
+        });
+        $('#show-list').click( function (e){
+            $('.company-list').show();
+            $('#create-company-form').hide();
+        });
+
+        $('#continue').click( function (e){
+            var id = $('.select-company').select2().find(":selected").attr("value");
+            var data = {};
+            data['type'] = 'old';
+            data['id'] = id;
+            $.ajax({
+                method: 'POST',
+                url: '/company/create',
+                data: data,
+                success: function (data){
+                    if (data.result === true){
+                        $.fancybox.open('<div class="popup-message"> ' +
+                            '<div class="popup_icon"><img src="/img/success.svg"  alt=""></div>' +
+                            '<p>'+data.message+'</p></div>');
+                        setTimeout(location.href = '/contract' , 20000);
+                    }
+                },
+                error: function (xhr){
+                    console.log(xhr.responseText);
+                }
+            })
+        });
+
+        $("#create-company-form").on("submit", function(e){
+            e.preventDefault();
+            var data = {};
+            $(this).serializeArray().forEach((object)=>{
+                data[object.name] = object.value;
+            });
+            data['type'] = 'new';
+            $.ajax({
+                method: 'POST',
+                url: '/company/create',
+                data: data,
+                success: function (data){
+                    if (data.result === true){
+                        $.fancybox.open('<div class="popup-message"> ' +
+                            '<div class="popup_icon"><img src="/img/success.svg"  alt=""></div>' +
+                            '<p>'+data.message+'</p></div>');
+                        setTimeout(location.href = '/contract' , 20000);
+                    }
+                    else if (data.result === false){
+                        $.fancybox.open('<div class="popup-message"> ' +
+                            '<div class="popup_icon"><img src="/img/error.svg"  alt=""></div>' +
+                            '<p>'+data.message+'</p></div>');
+                    }
+                },
+                error: function (xhr){
+                    console.log(xhr.responseText);
+                }
+            })
+        })
+    });
+</script>
+
+
+
+
+

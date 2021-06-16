@@ -1,0 +1,80 @@
+<form class="contract-edit-form" id="edit-company" name="company">
+    <div class="title-popup">Договор №:{{ items.num_contract }}</div>
+    <div class="line_block"></div>
+    <div class="popup-form-wrapper">
+        <div class="popup-content">
+            <div class="field_wrap">
+                <label>
+                    Название компании
+                    <input class="form-control field_type" value="{{ items.name }}" name="name" placeholder="Название компании" readonly>
+                </label>
+            </div>
+            <div class="field_wrap">
+                <label>
+                    Email
+                    <input class="form-control field_type" value="{{ items.email }}" name="email" placeholder="Email" readonly>
+                </label>
+            </div>
+            <div class="field_wrap">
+                <label>
+                    Дата формирования
+                    <input class="form-control field_type" value="{{ items.date_conclusion }}" name="date_conclusion" type="date" placeholder="">
+                </label>
+            </div>
+            <div class="field_wrap">
+                <label>
+                    Дата активации
+                    <input class="form-control field_type" value="{{ items.date_activation }}" name="date_activations" type="date" placeholder="">
+                </label>
+            </div>
+            <div class="field_wrap">
+                <label>
+                    Дата окончания
+                    <input class="form-control field_type" value="{{ items.date_ending }}" name="date_ending" type="date" placeholder="">
+                </label>
+            </div>
+        </div>
+        <div class="popup-content">
+            <div class="field_wrap">
+                <label>
+                    Общая сумма
+                    <input class="form-control field_type" value="{{ items.sum }}" name="sum" placeholder="">
+                </label>
+            </div>
+            <div class="field_wrap">
+                <label>
+                    Сумма долга
+                    <input class="form-control field_type" value="{{ items.dept }}" name="dept" placeholder="">
+                </label>
+            </div>
+            <div class="field_wrap">
+                <label>
+                    Дата погошения долга
+                    <input class="form-control field_type" value="{{ items.date_dept }}" name="date_dept" type="date" placeholder="">
+                </label>
+            </div>
+            <div class="field_wrap">
+                <label>
+                    Дата оплаты по договору
+                    <input class="form-control field_type" value="{{ items.date_payment }}" name="date_payment" type="date" placeholder="">
+                </label>
+            </div>
+            <div class="field_wrap" style="visibility: hidden">
+                <label>
+                    ID
+                    <input class="form-control field_type_file" value="{{ items.id }}" name="id" placeholder="">
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="line_block"></div>
+    <div class="button-block">
+        <button class="btn btn-popup" id="save-edit" type="submit">Сохранить</button>
+        <a class="btn btn-popup" data-fancybox-close >Закрыть</a>
+    </div>
+</form>
+
+
+
+
+

@@ -1,0 +1,99 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/statistic.css') }}" />
+    {#    <script src="{{ asset('/assets/js/auth.js') }}"></script>#}
+{% endblock %}
+{% include 'header.html.twig' %}
+<div class="container_page">
+    <div class="background_page">
+        <div class="g-wrapper">
+            <section class="help-block">
+                <div class="block-help-title">Статистика пользователя</div>
+                <div class="help__wrapper-container">
+                    <aside class="sidebar" id="sticky-sidebar">
+                        <ul class="help__wrapper-container-aside_content" id="scroll_block">
+                            <li><a href="#userStatisticMoth">Статистика за месяц</a></li>
+                            <li><a href="#userStatisticYear">Статистика за год</a></li>
+                        </ul>
+                    </aside>
+
+                    <div class="help__wrapper-container-contents">
+                        <div id="userStatisticMoth" class="help__wrapper-container-contents-text">
+                             <div class="contents-text-title">Статистика за месяц</div>
+                             <div class="contents-text">
+                                 <p>Показывает количество договоров оформленных за день, в течении текущего месяца</p>
+                                 <div id="moth" class="diagram"></div>
+                             </div>
+                        </div>
+                        <div id="userStatisticYear" class="help__wrapper-container-contents-text">
+                            <div class="contents-text-title">Статистика за год</div>
+                            <div class="contents-text">
+                                <p>Показывается количество договоров оформленных за месяц, в течении текущего года</p>
+                                <div id="year" class="diagram"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+{% include 'footer.html.twig' %}
+<script>
+    $(document).ready(function() {
+        getDataDiagram();
+    });
+    function getDataDiagram(){
+        $.ajax({
+            method: 'POST',
+            url: '/statisticUser',
+            success: function (data){
+                console.log(data['scale']);
+                initDiagramMoth(data['moth']);
+                initDiagramYear(data['year']);
+            },
+            error: function (xhr){
+                console.log(xhr.responseText);
+            }
+        })
+    }
+    function initDiagramMoth(data) {
+        $('#moth').zingchart({
+            "data": {
+                "type": 'bar',
+                "series": [{
+                    "values": data['series'],
+                    'background-color': "#000000",
+                }] ,
+                "scale-x": {
+                    "values":
+                        data['scale']
+
+                },
+            }
+        });
+    }
+    function initDiagramYear(data) {
+        $('#year').zingchart({
+            "data": {
+                "type": 'line',
+                "series": [{
+                    "values": data['series'],
+                    'line-color': "#000000",
+                    'line-style': "solid",
+                }] ,
+                "scale-x": {
+                    "values":
+                        data['scale']
+
+                },
+            }
+        });
+    }
+</script>
+
+
+
+
+

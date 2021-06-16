@@ -1,0 +1,12 @@
+# config/routes.yaml
+
+# the "app_menu_page" route name is not important yet
+app_menu_page:
+  path: /menu
+  controller: App\Controller\MenuController::menuAction
+login_check:
+  path: /login_check
+app_create_contract:
+  path: /ontract
+  controller: App\Controller\ContractController::CreateNewContract
+

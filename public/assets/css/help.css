@@ -1,0 +1,109 @@
+input , button , label{
+    font-family: DINPro;
+}
+
+a:visited {
+    color: #000000;
+}
+
+label {
+    color: #000000;
+    font-size: 15px;
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+.help-block{
+    color: #000000;
+    padding: 30px 20px;
+    font-family: DINPro-Medium;
+}
+
+.block-help-title{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 auto;
+    font-family: 'DINPro-Bold';
+}
+
+.help__wrapper-container{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.help__wrapper-container-aside{
+    position: fixed;
+    width: 150px;
+    height: 400px;
+}
+
+.help__wrapper-container-aside_content {
+    border-radius: 0.25rem;
+    border: 0.0625rem solid #f5f5f5;
+    -webkit-box-shadow: 0 0.625rem 1.875rem rgb(0 0 0 / 8%);
+    box-shadow: 0 0.625rem 1.875rem rgb(0 0 0 / 8%);
+    padding: 1.5625rem 1.5625rem 2rem;
+    margin-bottom: 1.25rem;
+    list-style: none;
+}
+
+.sidebar {
+    min-width: 300px;
+    padding-top: 50px;
+}
+
+.help__wrapper-container-contents{
+    padding: 0 30px;
+    position: relative;
+    width: 100%;
+    text-align: left;
+}
+
+li {
+    margin: 10px 0;
+}
+
+.help__wrapper-container-contents-text{
+    padding: 62px 20px 0 20px;
+}
+
+.contents-text-title{
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.text_img{
+    border-radius: 0.25rem;
+    border: 0.0625rem solid #f5f5f5;
+    -webkit-box-shadow: 0 0.625rem 1.875rem rgb(0 0 0 / 8%);
+    box-shadow: 0 0.625rem 1.875rem rgb(0 0 0 / 8%);
+    padding: 1.5625rem 1.5625rem 2rem;
+    margin-bottom: 1.25rem;
+}
+
+.text_img img{
+    max-width: 100%;
+}
+
+.contents-text{
+    font-size: 15px;
+    color: rgb(0 0 0);
+    font-family: 'DINPro';
+    line-height: 15px;
+}
